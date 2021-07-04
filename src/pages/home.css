@@ -49,6 +49,7 @@
     line-height: 24px;
     color: #FFFFFF;
     border: none;
+    cursor: pointer;
 }
 
 .separator {
@@ -79,10 +80,11 @@
 .user-details {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     justify-content: space-between;
     padding: 5px;
     width: 80%;
+    color: #869189;
 }
 
 .user-name {

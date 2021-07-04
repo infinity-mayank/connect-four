@@ -1,0 +1,66 @@
+.game-wrapper {
+    width: 1152px;
+    height: 586px;
+    background: #FFFFFF;
+    border: 1px solid #F7F7F7;
+    box-sizing: border-box;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.game {
+    width: 586px;
+    height: 586px;
+    background: #84A4FB;
+    border-radius: 30px;
+}
+
+.game-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+.undo-button {
+    width: 280px;
+    height: 55px;
+    background: #4B7BFF;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.end-button {
+    width: 280px;
+    height: 57px;
+    background: #FFFFFF;
+    border: 1px solid #E5ECFF;
+    box-sizing: border-box;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 10px;
+    margin-top: 10px;
+    color: #CC0000;
+    cursor: pointer;
+}
+
+.tournament-text {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    color: #424242;
+    margin: 0;
+}
+
+.game-text {
+    font-size: 18px;
+    line-height: 27px;
+    color: #424242;
+    margin: 0;
+    padding-bottom: 15px;
+}

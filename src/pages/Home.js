@@ -4,6 +4,10 @@ import avatar1 from '../assets/avatar01.png';
 import avatar2 from '../assets/avatar02.png';
 
 function Home(props) {
+  const onStartGame = () => {
+    props.history.push('/game');
+  }
+
   return (
     <div className="login-wrapper">
       <div className="user-wrapper-1">
@@ -25,7 +29,7 @@ function Home(props) {
         </div>
       </div>
       <span className="separator" />
-      <button className="start-button">
+      <button className="start-button" onClick={onStartGame}>
         Start Game
       </button>
     </div>
