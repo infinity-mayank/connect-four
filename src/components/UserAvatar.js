@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import './userAvatar.css';
 
 function UserAvatar(props) {
-  const { avatar, userId, forGameCell } = props;
+  const { avatar, userId, forGameCell, isActive } = props;
 
   return (
-    <div className={`user-icon-${userId} ${forGameCell ? 'icon-for-cell' : ''}`}>
+    <div className={`user-icon-${userId} ${forGameCell ? 'icon-for-cell' : ''} ${isActive ? 'active-player' : ''}`}>
       <img className={forGameCell ? 'image-for-cell': ''} src={avatar} alt={`user-avatar-${userId}`}/>
     </div>
   );
@@ -14,7 +14,9 @@ function UserAvatar(props) {
 
 UserAvatar.propTypes = {
   avatar: PropTypes.any.isRequired,
-  userId: PropTypes.number.isRequired
+  userId: PropTypes.number.isRequired,
+  isActive: PropTypes.bool,
+  forGameCell: PropTypes.bool
 };
 
 export default UserAvatar;

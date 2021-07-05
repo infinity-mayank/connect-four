@@ -41,12 +41,14 @@ function Game(props) {
         }
       }
       dispatch(updateBoard(cloneBoard));
-      dispatch(changeCurrentPlayer());
 
       const result = checkForWin(cloneBoard);
 
       if(result) {
         dispatch(onWinning(result))
+      }
+      else {
+        dispatch(changeCurrentPlayer());
       }
     }
   }
@@ -83,7 +85,7 @@ function Game(props) {
         }
         <p className="game-text">Playing Game {currentGame}</p>
         <div className="user-wrapper-1">
-          <UserAvatar avatar={player1.avatar} userId={player1.id} />
+          <UserAvatar avatar={player1.avatar} userId={player1.id} isActive={player1.id === currentPlayer}/>
           <div className="user-game-details">
             <p className="player-text">Player 01</p>
             <p>{player1.name}</p>
@@ -94,7 +96,7 @@ function Game(props) {
           </div>
         </div>
         <div className="user-wrapper-2">
-          <UserAvatar avatar={player2.avatar} userId={player2.id} />
+          <UserAvatar avatar={player2.avatar} userId={player2.id} isActive={player2.id === currentPlayer}/>
           <div className="user-game-details">
             <p className="player-text">Player 02</p>
             <p>{player2.name}</p>
