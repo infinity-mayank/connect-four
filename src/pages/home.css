@@ -79,3 +79,10 @@
     font-size: 18px;
     line-height: 21px;
 }
+
+@media only screen and (max-width: 600px) {
+    .login-wrapper {
+        width: unset;
+        height: unset;
+    }
+}

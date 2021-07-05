@@ -1,6 +1,4 @@
 .game-wrapper {
-    width: 1152px;
-    height: 586px;
     background: #FFFFFF;
     border: 1px solid #F7F7F7;
     box-sizing: border-box;
@@ -11,8 +9,6 @@
 }
 
 .game {
-    width: 586px;
-    height: 586px;
     background: #84A4FB;
     border-radius: 30px;
 }
@@ -21,7 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: auto;
+    margin: 90px;
 }
 
 .start-undo-button {
@@ -67,16 +63,6 @@
     padding: 32px;
 }
 
-.cell {
-    width: 50px;
-    height: 50px;
-    background: white;
-    display: inline-block;
-    box-sizing: border-box;
-    border-radius: 50%;
-    margin: 4px;
-}
-
 .game-over-text {
     font-style: normal;
     font-weight: 500;
@@ -104,4 +90,20 @@ p {
 
 .active-player {
     box-shadow: 0 0 0 10px #ffa201;
+}
+
+@media only screen and (max-width: 600px) {
+    .game-wrapper {
+        flex-direction: column;
+        margin: 10px;
+    }
+    .game-details {
+        margin: auto;
+    }
+    .game-table {
+        padding: 10px;
+    }
+    .end-button {
+        margin-bottom: 10px;
+    }
 }

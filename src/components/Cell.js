@@ -2,6 +2,7 @@ import React from 'react';
 import avatar1 from "../assets/avatar01.png";
 import avatar2 from "../assets/avatar02.png";
 import UserAvatar from "./UserAvatar";
+import './cell.css';
 
 function Cell(props) {
   const { value, columnIndex, play } = props;
