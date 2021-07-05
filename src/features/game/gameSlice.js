@@ -18,7 +18,8 @@ const initialState = {
   tournamentCount: 3,
   currentTournament: 1,
   tournamentOver: false,
-  board: initializeBoard()
+  board: initializeBoard(),
+  boardState: []
 };
 
 
@@ -27,6 +28,7 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     updateBoard: (state, actions) => {
+      state.boardState.push(state.board);
       state.board = actions.payload;
     },
     changeCurrentPlayer: (state) => {
@@ -36,11 +38,16 @@ export const gameSlice = createSlice({
       else {
         state.currentPlayer = state.player1.id;
       }
+    },
+    undoMove: (state) => {
+      if(state.boardState.length > 0) {
+        state.board = state.boardState.pop();
+      }
     }
   }
 });
 
-export const { updateBoard, changeCurrentPlayer } = gameSlice.actions;
+export const { updateBoard, changeCurrentPlayer, undoMove } = gameSlice.actions;
 
 export const selectBoard = (state) => state.game.board;
 

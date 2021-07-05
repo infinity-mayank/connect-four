@@ -9,7 +9,8 @@ import {
   selectTournamentOver,
   selectCurrentPlayer,
   updateBoard,
-  changeCurrentPlayer
+  changeCurrentPlayer,
+  undoMove
 } from "../features/game/gameSlice";
 import Row from "../components/Row";
 import { checkForWin, deepCloneBoard } from "../features/game/gameUtils";
@@ -34,13 +35,11 @@ function Game() {
     if(!gameOver && !tournamentOver) {
       let cloneBoard = deepCloneBoard(board);
       for (let r = 7; r >= 0; r--) {
-        debugger;
         if (!cloneBoard[r][columnIndex]) {
           cloneBoard[r][columnIndex] = currentPlayer
           break
         }
       }
-      console.log(cloneBoard);
 
       const result = checkForWin(cloneBoard);
       console.log('RESULT', result);
@@ -49,6 +48,8 @@ function Game() {
       dispatch(changeCurrentPlayer());
     }
   }
+
+  const onUndo = () => dispatch(undoMove());
 
   return (
     <div className="game-wrapper">
@@ -79,7 +80,7 @@ function Game() {
           </div>
         </div>
         <span className="separator" />
-        <button className="undo-button">
+        <button className="undo-button" onClick={onUndo}>
           Undo Step
         </button>
         <button className="end-button">
