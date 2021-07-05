@@ -21,6 +21,12 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
+    changePlayer1Name: (state, actions) => {
+      state.player1.name = actions.payload;
+    },
+    changePlayer2Name: (state, actions) => {
+      state.player2.name = actions.payload;
+    },
     updateBoard: (state, actions) => {
       state.boardState.push(state.board);
       state.board = actions.payload;
@@ -63,7 +69,15 @@ export const gameSlice = createSlice({
   }
 });
 
-export const { updateBoard, changeCurrentPlayer, undoMove, onWinning, startGame } = gameSlice.actions;
+export const {
+  updateBoard,
+  changeCurrentPlayer,
+  undoMove,
+  onWinning,
+  startGame,
+  changePlayer1Name,
+  changePlayer2Name
+} = gameSlice.actions;
 
 export const selectBoard = (state) => state.game.board;
 
