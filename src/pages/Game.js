@@ -55,7 +55,13 @@ function Game(props) {
 
   const onEndTournament = () => props.history.push('/');
 
-  const onStartGame = () => dispatch(startGame());
+  const onStartGame = () => {
+    if(tournamentOver) {
+      onEndTournament();
+      return;
+    }
+    dispatch(startGame());
+  }
 
   return (
     <div className="game-wrapper">
@@ -73,25 +79,35 @@ function Game(props) {
       <div className="game-details">
         <p className="tournament-text">{totalGames} Games Tournament</p>
         {
-          gameOver && <p className="game-over-text">Congratulations!</p>
+          (gameOver || tournamentOver) && <p className="game-over-text">Congratulations!</p>
         }
         <p className="game-text">Playing Game {currentGame}</p>
         <div className="user-wrapper-1">
           <UserAvatar avatar={player1.avatar} userId={player1.id} />
-          <div className="user-details">
-            Player 01
+          <div className="user-game-details">
+            <p className="player-text">Player 01</p>
+            <p>{player1.name}</p>
+          </div>
+          <div className="user-game-details">
+            <p className="player-text">Score</p>
+            <p>{player1.score}</p>
           </div>
         </div>
         <div className="user-wrapper-2">
           <UserAvatar avatar={player2.avatar} userId={player2.id} />
-          <div className="user-details">
-            Player 02
+          <div className="user-game-details">
+            <p className="player-text">Player 02</p>
+            <p>{player2.name}</p>
+          </div>
+          <div className="user-game-details">
+            <p className="player-text">Score</p>
+            <p>{player2.score}</p>
           </div>
         </div>
         <span className="separator" />
         {
-          gameOver ?
-            <button className="start-undo-button" onClick={onStartGame} disabled={tournamentOver}>
+          gameOver || tournamentOver ?
+            <button className="start-undo-button" onClick={onStartGame}>
               Start Game
             </button>
             :
