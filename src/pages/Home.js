@@ -7,13 +7,16 @@ import {
   changePlayer2Name,
   selectPlayer1,
   selectPlayer2,
-  startNewGame
+  selectTotalGames,
+  startNewGame,
+  changeTotalGames
 } from "../features/game/gameSlice";
 
 function Home(props) {
   const dispatch = useDispatch();
   const player1 = useSelector(selectPlayer1);
   const player2 = useSelector(selectPlayer2);
+  const totalGames = useSelector(selectTotalGames)
 
   const onStartGame = () => {
     dispatch(startNewGame());
@@ -28,6 +31,8 @@ function Home(props) {
       dispatch(changePlayer2Name(value))
     }
   }
+
+  const onNoOfGamesChange = ({ target: { value } }) => dispatch(changeTotalGames(Number(value)));
 
   return (
     <div className="login-wrapper">
@@ -54,6 +59,9 @@ function Home(props) {
             onChange={onPlayerNameChange}
             value={player2.name}/>
         </div>
+      </div>
+      <div className="no-of-games">
+        Number of Games: <input type="number" min="1" step="1" value={totalGames} onChange={onNoOfGamesChange}/>
       </div>
       <span className="separator" />
       <button className="start-button" onClick={onStartGame}>

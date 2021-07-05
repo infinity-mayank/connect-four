@@ -69,6 +69,9 @@ export const gameSlice = createSlice({
     },
     startNewGame: (state) => {
       state.isGameStarted = true;
+    },
+    changeTotalGames: (state, actions) => {
+      state.totalGames = actions.payload;
     }
   }
 });
@@ -81,7 +84,8 @@ export const {
   startGame,
   changePlayer1Name,
   changePlayer2Name,
-  startNewGame
+  startNewGame,
+  changeTotalGames
 } = gameSlice.actions;
 
 export const selectBoard = (state) => state.game.board;
