@@ -1,23 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+import avatar1 from '../../assets/avatar01.png';
+import avatar2 from '../../assets/avatar02.png';
 
-const initializeBoard = () => {
-  let board = [];
-  for (let r = 0; r < 8; r++) {
-    let row = [];
-    for (let c = 0; c < 8; c++) { row.push(null) }
-    board.push(row);
-  }
-  return board;
-}
+const initializeBoard = () => new Array(8).fill(new Array(8).fill(null));
 
 const initialState = {
-  player1: { id: 1, name: 'David'},
-  player2: { id: 2, name: 'Maria'},
+  player1: { id: 1, name: 'David', score: 0, avatar: avatar1 },
+  player2: { id: 2, name: 'Maria', score: 0, avatar: avatar2 },
   currentPlayer: 1,
-  gameOver: false,
   tournamentCount: 3,
   currentTournament: 1,
   tournamentOver: false,
+  gameOver: false,
   board: initializeBoard(),
   boardState: []
 };
@@ -43,11 +37,27 @@ export const gameSlice = createSlice({
       if(state.boardState.length > 0) {
         state.board = state.boardState.pop();
       }
+    },
+    onWinning: (state, actions) => {
+      if(actions.payload === state.player1.id) {
+        state.player1.score += 1;
+      }
+
+      if(actions.payload === state.player2.id) {
+        state.player2.score += 1;
+      }
+
+      if(state.currentTournament === state.tournamentCount) {
+        state.tournamentOver = true;
+      }
+      else {
+        state.currentTournament += 1;
+      }
     }
   }
 });
 
-export const { updateBoard, changeCurrentPlayer, undoMove } = gameSlice.actions;
+export const { updateBoard, changeCurrentPlayer, undoMove, onWinning } = gameSlice.actions;
 
 export const selectBoard = (state) => state.game.board;
 

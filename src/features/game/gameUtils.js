@@ -29,7 +29,7 @@ const checkVertical = (board) => {
 const checkHorizontal = (board) => {
   // Check only if column is 3 or less
   for (let row = 0; row < 8; row++) {
-    for (let column = 0; column < 4; column++) {
+    for (let column = 0; column < 8; column++) {
       if (board[row][column]) {
         if (
           board[row][column] === board[row][column + 1] &&
@@ -46,7 +46,7 @@ const checkHorizontal = (board) => {
 const checkDiagonalRight = (board) => {
   // Check only if row is 3 or greater AND column is 3 or less
   for (let row = 3; row < 8; row++) {
-    for (let column = 0; column < 4; column++) {
+    for (let column = 0; column < 8; column++) {
       if (board[row][column]) {
         if (
           board[row][column] === board[row - 1][column + 1] &&
