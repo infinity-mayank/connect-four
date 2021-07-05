@@ -10,7 +10,11 @@ import {
   undoMove,
   selectPlayer1,
   selectPlayer2,
-  onWinning
+  onWinning,
+  selectGameOver,
+  selectCurrentGame,
+  startGame,
+  selectTotalGames
 } from "../features/game/gameSlice";
 import Row from "../components/Row";
 import { checkForWin, deepCloneBoard } from "../features/game/gameUtils";
@@ -23,9 +27,12 @@ function Game(props) {
   const currentPlayer = useSelector(selectCurrentPlayer);
   const player1 = useSelector(selectPlayer1);
   const player2 = useSelector(selectPlayer2);
+  const gameOver = useSelector(selectGameOver);
+  const currentGame = useSelector(selectCurrentGame);
+  const totalGames = useSelector(selectTotalGames);
 
   const onPlay = (columnIndex) => {
-    if(!tournamentOver) {
+    if(!tournamentOver && !gameOver) {
       let cloneBoard = deepCloneBoard(board);
       for (let r = 7; r >= 0; r--) {
         if (!cloneBoard[r][columnIndex]) {
@@ -48,6 +55,8 @@ function Game(props) {
 
   const onEndTournament = () => props.history.push('/');
 
+  const onStartGame = () => dispatch(startGame());
+
   return (
     <div className="game-wrapper">
       <div className="game">
@@ -62,8 +71,11 @@ function Game(props) {
         </table>
       </div>
       <div className="game-details">
-        <p className="tournament-text">3 Games Tournament</p>
-        <p className="game-text">Playing Game 1</p>
+        <p className="tournament-text">{totalGames} Games Tournament</p>
+        {
+          gameOver && <p className="game-over-text">Congratulations!</p>
+        }
+        <p className="game-text">Playing Game {currentGame}</p>
         <div className="user-wrapper-1">
           <UserAvatar avatar={player1.avatar} userId={player1.id} />
           <div className="user-details">
@@ -77,9 +89,16 @@ function Game(props) {
           </div>
         </div>
         <span className="separator" />
-        <button className="undo-button" onClick={onUndo}>
-          Undo Step
-        </button>
+        {
+          gameOver ?
+            <button className="start-undo-button" onClick={onStartGame} disabled={tournamentOver}>
+              Start Game
+            </button>
+            :
+            <button className="start-undo-button" onClick={onUndo}>
+              Undo Step
+            </button>
+        }
         <button className="end-button" onClick={onEndTournament}>
           End Tournament
         </button>

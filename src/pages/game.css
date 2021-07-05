@@ -24,7 +24,7 @@
     margin: auto;
 }
 
-.undo-button {
+.start-undo-button {
     width: 280px;
     height: 55px;
     background: #4B7BFF;
@@ -77,4 +77,14 @@
     box-sizing: border-box;
     border-radius: 50%;
     margin: 4px;
+}
+
+.game-over-text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 42px;
+    text-align: center;
+    color: #FF6600;
+    margin: 0;
 }

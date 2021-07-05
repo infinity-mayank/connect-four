@@ -8,8 +8,8 @@ const initialState = {
   player1: { id: 1, name: 'David', score: 0, avatar: avatar1 },
   player2: { id: 2, name: 'Maria', score: 0, avatar: avatar2 },
   currentPlayer: 1,
-  tournamentCount: 3,
-  currentTournament: 1,
+  totalGames: 3,
+  currentGame: 1,
   tournamentOver: false,
   gameOver: false,
   board: initializeBoard(),
@@ -47,17 +47,23 @@ export const gameSlice = createSlice({
         state.player2.score += 1;
       }
 
-      if(state.currentTournament === state.tournamentCount) {
+      if(state.currentGame === state.totalGames) {
         state.tournamentOver = true;
       }
       else {
-        state.currentTournament += 1;
+        state.gameOver = true;
       }
+    },
+    startGame: (state) => {
+      state.board = initializeBoard();
+      state.boardState = [];
+      state.currentGame += 1;
+      state.gameOver = false;
     }
   }
 });
 
-export const { updateBoard, changeCurrentPlayer, undoMove, onWinning } = gameSlice.actions;
+export const { updateBoard, changeCurrentPlayer, undoMove, onWinning, startGame } = gameSlice.actions;
 
 export const selectBoard = (state) => state.game.board;
 
@@ -70,5 +76,9 @@ export const selectCurrentPlayer = (state) => state.game.currentPlayer;
 export const selectGameOver = (state) => state.game.gameOver;
 
 export const selectTournamentOver = (state) => state.game.tournamentOver;
+
+export const selectCurrentGame = (state) => state.game.currentGame;
+
+export const selectTotalGames = (state) => state.game.totalGames;
 
 export default gameSlice.reducer;
