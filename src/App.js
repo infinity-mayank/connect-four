@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Router, Switch } from "react-router";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import history from "./history";
 import Game from "./pages/Game";
@@ -8,12 +8,12 @@ import Game from "./pages/Game";
 function App() {
   return (
     <div className="App">
-      <Router history={history}>
+      <BrowserRouter history={history}>
         <Switch>
           <Route path="/" component={Home} exact/>
           <Route path="/game" component={Game} exact/>
         </Switch>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './game.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -14,7 +14,7 @@ import {
   selectGameOver,
   selectCurrentGame,
   startGame,
-  selectTotalGames
+  selectTotalGames, selectIsGameStarted
 } from "../features/game/gameSlice";
 import Row from "../components/Row";
 import { checkForWin, deepCloneBoard } from "../features/game/gameUtils";
@@ -30,6 +30,13 @@ function Game(props) {
   const gameOver = useSelector(selectGameOver);
   const currentGame = useSelector(selectCurrentGame);
   const totalGames = useSelector(selectTotalGames);
+  const isGameStarted = useSelector(selectIsGameStarted);
+
+  useEffect(() => {
+    if(!isGameStarted) {
+      props.history.push('/');
+    }
+  }, []);
 
   const onPlay = (columnIndex) => {
     if(!tournamentOver && !gameOver) {

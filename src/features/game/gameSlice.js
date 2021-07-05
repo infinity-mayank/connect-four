@@ -5,6 +5,7 @@ import avatar2 from '../../assets/avatar02.png';
 const initializeBoard = () => new Array(8).fill(new Array(8).fill(null));
 
 const initialState = {
+  isGameStarted: false,
   player1: { id: 1, name: 'David', score: 0, avatar: avatar1 },
   player2: { id: 2, name: 'Maria', score: 0, avatar: avatar2 },
   currentPlayer: 1,
@@ -65,6 +66,9 @@ export const gameSlice = createSlice({
       state.boardState = [];
       state.currentGame += 1;
       state.gameOver = false;
+    },
+    startNewGame: (state) => {
+      state.isGameStarted = true;
     }
   }
 });
@@ -76,7 +80,8 @@ export const {
   onWinning,
   startGame,
   changePlayer1Name,
-  changePlayer2Name
+  changePlayer2Name,
+  startNewGame
 } = gameSlice.actions;
 
 export const selectBoard = (state) => state.game.board;
@@ -94,5 +99,7 @@ export const selectTournamentOver = (state) => state.game.tournamentOver;
 export const selectCurrentGame = (state) => state.game.currentGame;
 
 export const selectTotalGames = (state) => state.game.totalGames;
+
+export const selectIsGameStarted = (state) => state.game.isGameStarted;
 
 export default gameSlice.reducer;

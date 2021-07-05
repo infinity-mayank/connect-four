@@ -6,7 +6,8 @@ import {
   changePlayer1Name,
   changePlayer2Name,
   selectPlayer1,
-  selectPlayer2
+  selectPlayer2,
+  startNewGame
 } from "../features/game/gameSlice";
 
 function Home(props) {
@@ -15,6 +16,7 @@ function Home(props) {
   const player2 = useSelector(selectPlayer2);
 
   const onStartGame = () => {
+    dispatch(startNewGame());
     props.history.push('/game');
   }
 

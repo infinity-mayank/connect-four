@@ -6,3 +6,21 @@
 .image-for-cell {
     height: 30px;
 }
+
+.user-icon-1 {
+    width: 70px;
+    height: 70px;
+    border: 10px solid #37AC5D;
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-icon-2 {
+    width: 70px;
+    height: 70px;
+    border: 10px solid #F8D145;
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin-right: 10px;
+}
