@@ -41,9 +41,7 @@ export const gameSlice = createSlice({
       }
     },
     undoMove: (state) => {
-      if(state.boardState.length > 0) {
-        state.board = state.boardState.pop();
-      }
+      state.board = state.boardState.pop();
     },
     onWinning: (state, actions) => {
       if(actions.payload === state.player1.id) {
@@ -105,5 +103,7 @@ export const selectCurrentGame = (state) => state.game.currentGame;
 export const selectTotalGames = (state) => state.game.totalGames;
 
 export const selectIsGameStarted = (state) => state.game.isGameStarted;
+
+export const selectBoardState = (state) => state.game.boardState;
 
 export default gameSlice.reducer;

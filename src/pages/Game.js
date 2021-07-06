@@ -14,7 +14,9 @@ import {
   selectGameOver,
   selectCurrentGame,
   startGame,
-  selectTotalGames, selectIsGameStarted
+  selectTotalGames,
+  selectIsGameStarted,
+  selectBoardState
 } from "../features/game/gameSlice";
 import Row from "../components/Row";
 import { checkForWin, deepCloneBoard } from "../features/game/gameUtils";
@@ -31,6 +33,7 @@ function Game(props) {
   const currentGame = useSelector(selectCurrentGame);
   const totalGames = useSelector(selectTotalGames);
   const isGameStarted = useSelector(selectIsGameStarted);
+  const boardState = useSelector(selectBoardState);
 
   useEffect(() => {
     if(!isGameStarted) {
@@ -60,7 +63,12 @@ function Game(props) {
     }
   }
 
-  const onUndo = () => dispatch(undoMove());
+  const onUndo = () => {
+    if(boardState.length > 0) {
+      dispatch(undoMove());
+      dispatch(changeCurrentPlayer());
+    }
+  }
 
   const onEndTournament = () => props.history.push('/');
 
